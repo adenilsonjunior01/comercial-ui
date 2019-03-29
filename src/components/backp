@@ -1,0 +1,80 @@
+<v-data-table
+    :headers="headers"
+    :items="desserts"
+    hide-actions
+    item-key="name"
+  >
+    <template slot="items" slot-scope="props">
+      <tr @click="props.expanded = !props.expanded">
+        <td>{{ props.item.name }}</td>
+        <td class="text-xs-center">{{ props.item.descricao }}</td>
+        <td class="text-xs-center">{{ props.item.valor }}</td>
+      </tr>
+    </template>
+    <template slot="no-data">
+        <v-alert :value="true" color="error" icon="warning">
+          Sem prospectos cadastrados :(
+        </v-alert>
+      </template>
+  </v-data-table>
+
+  data() {
+        return {
+          formTitle: 'Teste',
+          editedItem: {
+          name: '',
+          calories: 0,
+          fat: 0,
+          carbs: 0,
+          protein: 0
+        },
+        defaultItem: {
+          name: '',
+          calories: 0,
+          fat: 0,
+          carbs: 0,
+          protein: 0
+        },
+            headers: [
+        {
+            text: 'Nome Prospecto',
+            align: 'left',
+            sortable: false,
+            //value: 'nome_prospecto'
+            value: 'nome'
+        },
+        {
+            text: 'Descição',
+            value: 'descricao',
+            align: 'center'
+        },
+        {
+            text: 'Valor',
+            value: 'valor',
+            align: 'center'
+        }
+    ],
+        }
+    },
+    created: {
+        desserts: [
+        {
+          value: false,
+          name: 'Frozen Yogurt',
+          descricao: 159,
+          valor: 6.0
+        },
+        {
+          value: false,
+          name: 'Ice cream sandwich',
+          descricao: 237,
+          valor: 9.0
+        },
+        {
+          value: false,
+          name: 'Eclair',
+          descricao: 262,
+          valor: 16.0
+        },
+    ]
+    }
